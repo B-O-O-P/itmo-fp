@@ -1,0 +1,90 @@
+name:                hw3
+version:             0.1.0.0
+synopsis:            Synopsis for task 3
+description:         Task 3 for FP ITMO course
+
+homepage:            https://github.com/fp-ctd-itmo/hw3-B-O-O-P/hw3#readme
+license:             MIT
+license-file:        LICENSE
+author:              Dmitriy
+maintainer:          dimkanut@gmail.com
+copyright:           2020 Dmitriy
+
+category:            Web
+build-type:          Simple
+extra-source-files:  README.md
+cabal-version:       >=1.10
+tested-with:         GHC == 8.0.1
+
+library
+  hs-source-dirs:      src
+                       src/Utils
+  exposed-modules:     Task1
+                     , Task2
+                     , Task5
+                     , Task5Practice
+                     , Utils.FSException
+                     , Utils.FSUtils
+                     , Task6
+                     , Task7
+                     , Utils.ListZipper
+                     , Utils.Grid
+                     , Task8
+  ghc-options:         -Wall
+  build-depends:       base >= 4.9 && < 5
+                     , microlens
+                     , directory
+                     , filepath
+                     , stm
+                     , hashable
+                     , containers
+                     , vector
+                     , comonad
+                     , random
+  default-language:    Haskell2010
+
+executable hw3
+  hs-source-dirs:      app
+  main-is:             Main.hs
+  ghc-options:         -Wall -Werror -threaded -rtsopts -with-rtsopts=-N4
+  build-depends:       base
+                     , hw3
+                     , ansi-terminal
+                     , random
+  default-language:    Haskell2010
+
+test-suite hw3-test
+  type:                exitcode-stdio-1.0
+  main-is:             Spec.hs
+  hs-source-dirs:      test
+                       test/Config
+  ghc-options:         -Wall -Werror -threaded -rtsopts
+  build-depends:       base >= 4.9 && < 5
+                     , hw3
+                     , hspec
+                     , filepath
+                     , microlens
+                     , random
+  other-modules:       Task1Spec
+                     , Task2Spec
+                     , Task5Spec
+                     , Task6Spec
+                     , Task7Spec
+                     , Task8Spec
+                     , Config.ConfigFor567
+                     , Config.ConfigFor8
+  default-language:    Haskell2010
+
+benchmark hw3-bench
+  type:               exitcode-stdio-1.0
+  main-is:            Main.hs
+  other-modules:      Task1Bench
+                    , Utils.Task1BenchUtils
+  hs-source-dirs:     benchmark
+                    , benchmark/Utils
+  ghc-options:        -Wall -Werror -threaded -rtsopts -with-rtsopts=-N4
+  build-depends:      base >=4.9 && <5
+                    , hw3
+                    , criterion
+                    , QuickCheck
+  default-language:   Haskell2010

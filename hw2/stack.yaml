@@ -1,0 +1,7 @@
+resolver: lts-14.27
+
+extra-deps: []
+
+flags: {}
+
+extra-package-dbs: []
